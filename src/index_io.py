@@ -82,7 +82,7 @@ def load_or_initialize_index(opt):
         if opt.index_mode == "faiss":
             logger.info(f"loading faiss index type {opt.faiss_index_type} with parameters {opt.faiss_code_size}")
         index.load_index(opt.load_index_path, opt.save_index_n_shards)
-        passages = [index.doc_map[i] for i in range(len(index.doc_map))]
+        passages = [index.doc_map[i] for i in range(len(index.doc_map)) if i in index.doc_map]
     else:
         logger.info(f"Loading passages from: {opt.passages}")
         passages = []
